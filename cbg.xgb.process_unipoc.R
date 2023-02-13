@@ -69,7 +69,7 @@ for (interest_days in interest_days_vec) {
 
                             s <- admission_process(x)
                             s <- manage_prior_admission_data(s)
-                            wide_data <- suppressWarnings(wideData(s))
+                            wide_data <- suppressWarnings(wideData(s, 1))
                             export_data <- manage_colnames(wide_data)
 
                             if (ratio == -99) {

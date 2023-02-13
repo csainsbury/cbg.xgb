@@ -239,7 +239,7 @@ process_aegis <- function(x) {
   
 }
 
-wideData <- function(dataIn) {
+wideData <- function(dataIn, is_training_data = 1) {
   
   s <- dataIn
   
@@ -256,9 +256,12 @@ wideData <- function(dataIn) {
     
     # if there are no labels ie this is a prospective test set:
     # add the CHI to the label column
-    if (exists('sub$label[1]') == FALSE) {
-      sub$label <- sub$uID
+    if (is_training_data == 0){
+          if (exists('sub$label[1]') == FALSE) {
+          sub$label <- sub$uID
+      }
     }
+
     
     sub <- sub %>% select(ID, dateTime, day, Glu,
                           max_by_day, min_by_day, median_by_day, day_N, iqr_by_day, cV_by_day,
